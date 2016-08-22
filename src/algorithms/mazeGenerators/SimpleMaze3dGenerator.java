@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 	Maze3d simpleMaze;
-	//bla bla mother fucker
+	// bla mother fucker
 	// Generate a new Maze3d object according to user dimensions
 	public Maze3d generate(int sizeX, int sizeY, int sizeZ) {
 		Random rand = new Random();
