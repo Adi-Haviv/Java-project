@@ -8,4 +8,8 @@ public class Solution {
 	public ArrayList<State> getStates() {
 		return states;
 	}
+	
+	public void add(int index, State s){
+		states.add(index, s);
+	}
 }

@@ -24,11 +24,11 @@ public class BFS extends CommonSearcher {
 			
 			ArrayList<State> neighbors = searchable.getAllPossibleMoves(s);
 			for (State neighbor : neighbors) {
-				
+				// TODO : define checking of neighbors by specific state.
 			}
 		}
 		
-		return solution;
+		return backTrace(goalState);
 	}
 
 }

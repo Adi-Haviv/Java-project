@@ -263,7 +263,41 @@ public class Maze3d implements Searchable{
 
 	@Override
 	public ArrayList<State> getAllPossibleMoves(State s) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<State> moves = new ArrayList<State>();
+		int[] next = new int[3];
+		Position curr = new Position();
+		
+		// Check surrounding cells and translate the library's values to words
+		// 0 for left, 1 for right etc.
+		for (int i = 0; i < 6; i++) {
+			curr = (Position) s.getValue();
+			System.arraycopy(curr.coords, 0, next, 0, curr.coords.length);
+			next = move(i, next);
+
+			if (next[0] != -1){
+				switch (i) {
+				case 0:
+					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
+					break;
+				case 1:
+					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
+					break;
+				case 2:
+					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
+					break;
+				case 3:
+					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
+					break;
+				case 4:
+					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
+					break;
+				case 5:
+					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
+					break;
+				}
+			}
+		}
+		
+		return moves;
 	}
 }

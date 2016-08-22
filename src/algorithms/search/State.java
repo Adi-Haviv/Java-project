@@ -35,6 +35,15 @@ public class State<T> implements Comparable<State> {
 		this.value = value;
 	}
 	
+	public State(){};
+	
+	public State(String desc, double c, State parent, T value){
+		this.setDescription(desc);
+		this.setCost(c);
+		this.setCameFrom(parent);
+		this.setValue(value);
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		State s = (State)obj;
