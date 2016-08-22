@@ -1,24 +1,25 @@
 package algorithms.mazeGenerators;
 
+import algorithms.search.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import algorithms.mazeGenerators.Position;
 
-public class Maze3d {
+public class Maze3d implements Searchable{
 	int[][][] maze;
 	Position entry = new Position();
 	Position exit = new Position();
 	
 	
 	//default constructor for no values
-	Maze3d(){
+	public Maze3d(){
 		maze = new int[1][1][1];
 		maze[0][0][0] = 0;
 	}
 	
 	// constructor for maze sizes, initiates entire maze with 1's
-	Maze3d(int xSize, int ySize, int zSize){
+	public Maze3d(int xSize, int ySize, int zSize){
 		try{
 			// Generate new maze object according to N*2-1 to leave space for walls
 			maze = new int[(xSize * 2) - 1][(ySize * 2) - 1][(zSize * 2) - 1];
@@ -84,12 +85,12 @@ public class Maze3d {
 	}
 
 	// Sets entry point values
-	protected void setStartPosition(int[] p){
+	public void setStartPosition(int[] p){
 		System.arraycopy(p, 0, entry.coords, 0, entry.coords.length);
 	}
 	
 	// Sets exit point values
-	protected void setGoalPosition(int[] p){
+	public void setGoalPosition(int[] p){
 		System.arraycopy(p, 0, exit.coords, 0, exit.coords.length);
 	}
 	
@@ -244,5 +245,25 @@ public class Maze3d {
 			break;
 		}
 		return next;
+	}
+
+	@Override
+	public State<Position> getStartState() {
+		State<Position> startState = new State<Position>();
+		startState.setValue(this.entry);
+		return startState;
+	}
+
+	@Override
+	public State<Position> getGoalState() {
+		State<Position> goalState = new State<Position>();
+		goalState.setValue(this.exit);
+		return goalState;
+	}
+
+	@Override
+	public ArrayList<State> getAllPossibleMoves(State s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

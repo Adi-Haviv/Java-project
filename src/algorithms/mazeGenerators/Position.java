@@ -13,13 +13,13 @@ public class Position{
 
 	int[] coords = new int[3];
 	
-	Position(){
+	public Position(){
 		coords[0] = 0;
 		coords[1] = 0;
 		coords[2] = 0;
 	}
 	
-	Position(int x, int y, int z){
+	public Position(int x, int y, int z){
 		coords[0] = x;
 		coords[1] = y;
 		coords[2] = z;

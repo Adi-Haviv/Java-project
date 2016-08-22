@@ -1,0 +1,43 @@
+package algorithms.search;
+
+public class State<T> implements Comparable<State> {
+	private String description;
+	private double cost;
+	private State cameFrom;
+	private T value;
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	public State getCameFrom() {
+		return cameFrom;
+	}
+	public void setCameFrom(State cameFrom) {
+		this.cameFrom = cameFrom;
+	}
+	@Override
+	public int compareTo(State o) {
+		return (int)(this.cost - o.cost);		
+	}
+	public T getValue() {
+		return value;
+	}
+	public void setValue(T value) {
+		this.value = value;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		State s = (State)obj;
+		return (s.getValue().equals(this.getValue()));
+	}
+}

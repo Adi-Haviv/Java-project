@@ -18,6 +18,7 @@ public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 		possibleAxis.add(1);
 		possibleAxis.add(2);
 		
+		
 		// Generate random entry and exit points for maze, duplicate by 2 to consider walls.
 		int[] entry = { rand.nextInt(sizeX) * 2, rand.nextInt(sizeY) * 2, rand.nextInt(sizeZ) * 2 };
 		int[] exit = { rand.nextInt(sizeX) * 2, rand.nextInt(sizeY) * 2, rand.nextInt(sizeZ) * 2};
