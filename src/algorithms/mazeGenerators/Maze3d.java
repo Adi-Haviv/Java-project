@@ -1,12 +1,12 @@
 package algorithms.mazeGenerators;
 
-import algorithms.search.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import algorithms.mazeGenerators.Position;
 
-public class Maze3d implements Searchable{
+public class Maze3d{
 	int[][][] maze;
 	Position entry = new Position();
 	Position exit = new Position();
@@ -222,7 +222,7 @@ public class Maze3d implements Searchable{
 	}
 
 	// Receives a cell and a direction to move in, creates new cell as the next cell and returns it 
-	private int[] move(int dir, int[] cell){
+	public int[] move(int dir, int[] cell){
 		int[] next = new int[3];
 		switch (dir) {
 		case 0:
@@ -246,58 +246,9 @@ public class Maze3d implements Searchable{
 		}
 		return next;
 	}
-
+	
 	@Override
-	public State<Position> getStartState() {
-		State<Position> startState = new State<Position>();
-		startState.setValue(this.entry);
-		return startState;
-	}
-
-	@Override
-	public State<Position> getGoalState() {
-		State<Position> goalState = new State<Position>();
-		goalState.setValue(this.exit);
-		return goalState;
-	}
-
-	@Override
-	public ArrayList<State> getAllPossibleMoves(State s) {
-		ArrayList<State> moves = new ArrayList<State>();
-		int[] next = new int[3];
-		Position curr = new Position();
-		
-		// Check surrounding cells and translate the library's values to words
-		// 0 for left, 1 for right etc.
-		for (int i = 0; i < 6; i++) {
-			curr = (Position) s.getValue();
-			System.arraycopy(curr.coords, 0, next, 0, curr.coords.length);
-			next = move(i, next);
-
-			if (next[0] != -1){
-				switch (i) {
-				case 0:
-					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
-					break;
-				case 1:
-					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
-					break;
-				case 2:
-					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
-					break;
-				case 3:
-					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
-					break;
-				case 4:
-					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
-					break;
-				case 5:
-					moves.add(new State<Position>("", s.getCost() + 1, s, new Position(next[0], next[1], next[2])));
-					break;
-				}
-			}
-		}
-		
-		return moves;
+	public String toString(){
+		return Arrays.deepToString(maze);
 	}
 }

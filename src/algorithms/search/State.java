@@ -1,9 +1,9 @@
 package algorithms.search;
 
-public class State<T> implements Comparable<State> {
+public class State<T> implements Comparable<State<T>> {
 	private String description;
 	private double cost;
-	private State cameFrom;
+	private State<T> cameFrom;
 	private T value;
 	
 	public String getDescription() {
@@ -18,14 +18,14 @@ public class State<T> implements Comparable<State> {
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
-	public State getCameFrom() {
+	public State<T> getCameFrom() {
 		return cameFrom;
 	}
-	public void setCameFrom(State cameFrom) {
+	public void setCameFrom(State<T> cameFrom) {
 		this.cameFrom = cameFrom;
 	}
 	@Override
-	public int compareTo(State o) {
+	public int compareTo(State<T> o) {
 		return (int)(this.cost - o.cost);		
 	}
 	public T getValue() {
@@ -37,7 +37,7 @@ public class State<T> implements Comparable<State> {
 	
 	public State(){};
 	
-	public State(String desc, double c, State parent, T value){
+	public State(String desc, double c, State<T> parent, T value){
 		this.setDescription(desc);
 		this.setCost(c);
 		this.setCameFrom(parent);
@@ -46,7 +46,12 @@ public class State<T> implements Comparable<State> {
 	
 	@Override
 	public boolean equals(Object obj) {
-		State s = (State)obj;
+		State<T> s = (State<T>)obj;
 		return (s.getValue().equals(this.getValue()));
+	}
+	
+	@Override
+	public String toString(){
+		return value.toString();
 	}
 }

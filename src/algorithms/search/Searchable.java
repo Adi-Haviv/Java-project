@@ -2,8 +2,9 @@ package algorithms.search;
 
 import java.util.ArrayList;
 
-public interface Searchable {
-	State getStartState();
-	State getGoalState();
-	ArrayList<State> getAllPossibleMoves(State s);
+public interface Searchable<T> {
+	State<T> getStartState();
+	State<T> getGoalState();
+	ArrayList<State<T>> getAllPossibleStates(State<T> s);
+	double getMoveCost(State<T> src, State<T> dst);
 }
