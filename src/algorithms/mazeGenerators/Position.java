@@ -1,5 +1,7 @@
 package algorithms.mazeGenerators;
 
+import java.util.Arrays;
+
 public class Position{
 	public int[] getCoords() {
 		return coords;
@@ -23,6 +25,16 @@ public class Position{
 		coords[0] = x;
 		coords[1] = y;
 		coords[2] = z;
+	}
+	@Override
+	public boolean equals(Object obj){
+		Position p = (Position) obj;
+		return Arrays.equals(this.getCoords(), p.getCoords());
+	}
+	
+	@Override
+	public int hashCode(){
+		return coords[0] * 100 + coords[1] * 10 + coords[2];
 	}
 	
 	@Override

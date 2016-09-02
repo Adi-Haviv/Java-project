@@ -15,14 +15,19 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 		State<T> parent = new State<T>();
 		parent = goalState.getCameFrom();
 		
-		while(true){
-			sol.add(0, parent);
-			
-			if(parent.getCameFrom() == null){
-				return sol;
+		if(parent == null){
+			return sol;
+		}
+		else {
+			while(true){			
+				sol.add(0, parent);
+				
+				parent = parent.getCameFrom();
+				
+				if(parent == null){
+					return sol;
+				}
 			}
-			
-			parent = parent.getCameFrom();
 		}
 	}
 
