@@ -30,6 +30,10 @@ public class DFS<T> extends CommonSearcher<T> {
 		
 		visited.add(current);
 		evaluatedNodes++;
+		if(current.equals(goalState)){
+			goalState = current;
+			return;
+		}
 		
 		for(State<T> neighbor : neighbors){
 			if(!(visited.contains(neighbor))){

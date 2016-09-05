@@ -51,6 +51,11 @@ public class State<T> implements Comparable<State<T>> {
 	}
 	
 	@Override
+	public int hashCode(){
+		return this.getValue().hashCode();
+	}
+	
+	@Override
 	public String toString(){
 		return value.toString();
 	}

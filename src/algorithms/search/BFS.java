@@ -21,15 +21,12 @@ public class BFS<T> extends CommonSearcher<T> {
 			State<T> s = openList.poll();
 			closedList.add(s);
 			evaluatedNodes++;
-			if (s.equals(goalState)) {
-				return backTrace(goalState);
+			if (s.equals(goalState) && (s.getCost() < goalState.getCost() || goalState.getCost() == 0)) {
+				goalState = s;
 			}
-			
 			ArrayList<State<T>> neighbors = searchable.getAllPossibleStates(s);
 			for (State<T> neighbor : neighbors) {
-				if (!openList.contains(neighbor) && !closedList.contains(neighbor)) {
-					neighbor.setCameFrom(s);
-					neighbor.setCost(s.getCost() + searchable.getMoveCost(s, neighbor));
+				if ((!openList.contains(neighbor)) && !(closedList.contains(neighbor))) {
 					openList.add(neighbor);
 				}
 				else {
