@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class MyCompressorOutputStream extends OutputStream {
-	OutputStream out;
-	
+	OutputStream out;	
 	
 	//Constructor
 	public MyCompressorOutputStream(OutputStream out) {
