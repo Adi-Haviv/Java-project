@@ -9,6 +9,7 @@ import algorithms.search.SearchableMazeAdapter;
 import algorithms.search.Solution;
 
 public class Demo {
+
 	
 	public static void run(int size){
 		GrowingTreeGenerator mg = new GrowingTreeGenerator();
