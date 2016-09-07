@@ -20,7 +20,7 @@ public class MyCompressorOutputStream extends OutputStream {
 		byte currByte = arr[0];
 		int count = 1;
 		
-		//run over the array and numerate the zeros and ones in the order of appearance
+		//run over the array and nu-merate the zeros and ones in the order of appearance
 		for (int i=1; i < arr.length; i++){
 			//checks if the cell is the same as cell[0]
 			//if it is add one to `count`

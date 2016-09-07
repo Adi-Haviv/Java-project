@@ -10,12 +10,18 @@ public class Maze3d{
 	int[][][] maze;
 	Position entry = new Position();
 	Position exit = new Position();
+	int rows;
+	int columns;
+	int floors;
 	
 	
 	//default constructor for no values
 	public Maze3d(){
 		maze = new int[1][1][1];
 		maze[0][0][0] = 0;
+		rows = 0;
+		columns = 0;
+		floors = 0;
 	}
 	
 	// constructor for maze sizes, initiates entire maze with 1's
@@ -23,10 +29,13 @@ public class Maze3d{
 		try{
 			// Generate new maze object according to N*2-1 to leave space for walls
 			maze = new int[(xSize * 2) - 1][(ySize * 2) - 1][(zSize * 2) - 1];
+			rows = xSize;
+			columns = ySize;
+			floors = zSize;
 			for (int i = 0; i < maze.length; i++) {
 				for (int j = 0; j < maze[i].length; j++) {
-					for (int k = 0; k < maze[i][j].length; k++) {
-						maze[i][j][k] = 1;
+					for (int c = 0; c < maze[i][j].length; c++) {
+						maze[i][j][c] = 1;
 					}
 				}
 			}
@@ -35,7 +44,53 @@ public class Maze3d{
 			System.err.println("Invalid maze size recieved.\n" + e);
 		}
 	}
+	public Maze3d(byte[] arr) {
+		int c = 0;
+		this.rows = arr[c++];
+		this.columns = arr[c++];
+		this.floors =arr [c++];
+		maze = new int[rows][columns][floors];		
 	
+		Position entry = new Position(arr[c++], arr[c++], arr[c++]);
+		this.setStartPosition(entry);
+		Position exit = new Position(arr[c++], arr[c++], arr[c++]);
+		this.setGoalPosition(exit);
+		
+		for (int x = 0; x < rows; x++) {
+			for (int y = 0; y < columns; y++) {
+				for (int z = 0; z < floors; z++){
+					maze[x][y][z] = arr[c++];
+				}
+			}			
+		}
+	}
+	
+	public byte[] toByteArray() {
+		ArrayList<Byte> arr = new ArrayList<Byte>();
+		arr.add((byte)rows);
+		arr.add((byte)columns);
+		arr.add((byte)floors);
+		arr.add((byte)entry.coords[0]);
+		arr.add((byte)entry.coords[1]);
+		arr.add((byte)entry.coords[2]);
+		arr.add((byte)exit.coords[0]);
+		arr.add((byte)exit.coords[1]);
+		arr.add((byte)exit.coords[2]);
+		
+		for (int x = 0; x < rows; x++) {
+			for (int y = 0; y < columns; y++) {
+				for (int z = 0; z < columns; z++){
+					arr.add((byte)maze[x][y][z]);
+				}
+			}			
+		}
+		
+		byte[] bytes = new byte[arr.size()];
+		for (int i = 0; i < bytes.length; i++) {
+			bytes[i] = (byte)arr.get(i);
+		}
+		return bytes;
+	}
 	
 	// Returns entry point position object
 	public Position getStartPosition(){
@@ -85,13 +140,13 @@ public class Maze3d{
 	}
 
 	// Sets entry point values
-	public void setStartPosition(int[] p){
-		System.arraycopy(p, 0, entry.coords, 0, entry.coords.length);
+	public void setStartPosition(Position p){
+		this.entry = p;
 	}
 	
 	// Sets exit point values
-	public void setGoalPosition(int[] p){
-		System.arraycopy(p, 0, exit.coords, 0, exit.coords.length);
+	public void setGoalPosition(Position p){
+		this.exit = p;
 	}
 	
 	// Remove x axis from maze
