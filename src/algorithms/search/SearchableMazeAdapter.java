@@ -1,10 +1,8 @@
-package algorithms.demo;
+package algorithms.search;
 
 import java.util.ArrayList;
 
 import algorithms.mazeGenerators.*;
-import algorithms.search.Searchable;
-import algorithms.search.State;
 
 public class SearchableMazeAdapter implements Searchable<Position> {
 	private Maze3d maze;

@@ -5,6 +5,7 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.BFS;
 import algorithms.search.DFS;
+import algorithms.search.SearchableMazeAdapter;
 import algorithms.search.Solution;
 
 public class Demo {
