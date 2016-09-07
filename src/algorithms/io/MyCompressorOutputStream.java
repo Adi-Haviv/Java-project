@@ -13,8 +13,7 @@ public class MyCompressorOutputStream extends OutputStream {
 
 	@Override
 	public void write(int maze) throws IOException {
-		// TODO Auto-generated method stub
-			
+		out.write(maze);
 	}
 	
 	public void write(byte[] arr) throws IOException {
