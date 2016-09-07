@@ -25,7 +25,7 @@ public class MyDecompressorInputStream extends InputStream{
 		// counter is used to count bytes already read, as well as control the loops.
 		byte reps = 0;
 		byte value;
-		int counter = 0;
+		int arrIndex = 0;
 		
 		// If the receiving array is not defined, return 0 meaning 0 bytes read.
 		if(b.length == 0){
@@ -33,18 +33,18 @@ public class MyDecompressorInputStream extends InputStream{
 		}
 		
 		// While b is not full and stream still has data, decompress data from stream and place in b 
-		while(counter < b.length){
-			reps = (byte) (reps + in.read());
+		while(arrIndex < b.length){
+			reps = (byte) (in.read());
 			
 			value = (byte) in.read();
 			
-			while(counter < reps){
-				b[counter] = (byte) value;
-				counter++;
+			for (int i = 0; i < reps; i++){
+				b[arrIndex] = (byte) value;
+				arrIndex++;
 			}
 		}
 		
-		return counter;
+		return b.length;
 	}
 	
 

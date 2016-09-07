@@ -48,7 +48,7 @@ public class Maze3d{
 		int c = 0;
 		this.rows = arr[c++];
 		this.columns = arr[c++];
-		this.floors =arr [c++];
+		this.floors = arr[c++];
 		maze = new int[rows][columns][floors];		
 	
 		Position entry = new Position(arr[c++], arr[c++], arr[c++]);
@@ -79,7 +79,7 @@ public class Maze3d{
 		
 		for (int x = 0; x < rows; x++) {
 			for (int y = 0; y < columns; y++) {
-				for (int z = 0; z < columns; z++){
+				for (int z = 0; z < floors; z++){
 					arr.add((byte)maze[x][y][z]);
 				}
 			}			
