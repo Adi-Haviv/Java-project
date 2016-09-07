@@ -1,5 +1,9 @@
 package algorithms.io;
 
-public class InputLoop {
+public class InputLoop extends Thread{
+	
+	public void run(){
+		
+	}
 
 }

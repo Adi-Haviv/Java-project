@@ -34,8 +34,7 @@ public class MyDecompressorInputStream extends InputStream{
 		
 		// While b is not full and stream still has data, decompress data from stream and place in b 
 		while(arrIndex < b.length){
-			reps = (byte) (in.read());
-			
+			reps = (byte) in.read();
 			value = (byte) in.read();
 			
 			for (int i = 0; i < reps; i++){
