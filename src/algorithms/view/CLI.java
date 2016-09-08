@@ -6,15 +6,49 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import algorithms.controller.Command;
 
-public class CLI implements Runnable{
+public class CLI {
+	
+	public static class IOLoop implements Callable<ArrayList<String>>{
+		ArrayList<String> commands = new ArrayList<String>();
+		String command;
+		BufferedReader in;
+		
+		IOLoop(BufferedReader in){
+			this.in = in;
+		}
+		
+		@Override
+		public ArrayList<String> call() throws IOException {
+			try{
+				command = in.readLine();
+				while(!command.equals("exit")){
+					commands.add(command);
+					command = in.readLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return commands;
+			
+		}
+		
+	}
 	BufferedReader in;
 	PrintWriter out;
 	HashMap<String, Command> commands;
-	String cmd;
+	ArrayList<String> userCommands = new ArrayList<String>();
+	Future<ArrayList<String>> cmdFuture;
+	ExecutorService executor = Executors.newFixedThreadPool(3);
 	
 	CLI(InputStream in, OutputStream out, HashMap<String, Command> commands){
 		this.in = new BufferedReader(new InputStreamReader(in));
@@ -23,19 +57,21 @@ public class CLI implements Runnable{
 	}
 	
 	void start(){
+		Callable<ArrayList<String>> InputLoop = new IOLoop(in);
+		cmdFuture = executor.submit(InputLoop);
 		try {
-			;
-			Thread input = new Thread()
-			while(cmd.equals(new String("exit"))){
-				
-			}
-		} catch (IOException e) {
+			userCommands = cmdFuture.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void run() {
 		
+		for(String cmd: userCommands){
+			Command current = commands.get(cmd);
+			if(current != null){
+				current.doCommand();
+			}
+		}
 	}
 }
