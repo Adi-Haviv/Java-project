@@ -403,4 +403,25 @@ public class Maze3d{
 	public String toString(){
 		return Arrays.deepToString(maze);
 	}
+	
+	@Override
+	 public boolean equals(Object obj){
+ 		Maze3d maze = (Maze3d) obj;
+ 		
+ 		// Checking that every cell is equal to it's parallel in the given maze.
+ 		for (int x = 0; x < this.maze.length; x++) {
+ 			for (int y = 0; y < this.maze[x].length; y++) {
+ 				for (int z = 0; z < this.maze[x][y].length; z++) {
+ 					if (this.maze[x][y][z] != maze.maze[x][y][z])
+ 						return false;
+ 				}
+ 			}
+ 		}
+ 		
+ 		if (entry.equals(maze.entry)&&(exit.equals(maze.exit)))
+ 			return true;
+ 		else
+ 			return false;
+ 			
+	 } 
 }
