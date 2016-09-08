@@ -2,6 +2,15 @@ package algorithms.mazeGenerators;
 
 import java.util.Arrays;
 
+/**
+ * <h1>Position class</h1>
+ * Class used to represent a position in the maze.
+ * The class holds the coordinates for the location in the maze
+ * as well as overrides for general functionality of the maze.
+ * 
+ * @author Adi Haviv & Bar Genish
+ *
+ */
 public class Position{
 	public int[] getCoords() {
 		return coords;

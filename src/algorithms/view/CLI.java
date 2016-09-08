@@ -18,18 +18,22 @@ import algorithms.controller.Command;
 
 public class CLI {
 	
+	// IOLoop class implements callable to be called as a separate thread, and return value to main
 	public static class IOLoop implements Callable<ArrayList<String>>{
 		ArrayList<String> commands = new ArrayList<String>();
 		String command;
 		BufferedReader in;
 		
+		// C'Tor for input stream
 		IOLoop(BufferedReader in){
 			this.in = in;
 		}
 		
+		// Runs when started as a thread via ExecutorService
 		@Override
 		public ArrayList<String> call() throws IOException {
 			try{
+				// Creates arraylist of string to return from user input to main thread.
 				command = in.readLine();
 				while(!command.equals("exit")){
 					commands.add(command);

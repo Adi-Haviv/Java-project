@@ -5,10 +5,29 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * <h1> Simple Maze Generator </h1>
+ * Randomly generate a simple maze.
+ * This algorithm ensures <b>at least</b> one solution in the maze.
+ * <p>
+ * Note:This algorithm does not ensure the existence of <b>only</b> one solution
+ * nor does it ensure that no blank spaces are made.
+ * 
+ * @author Adi Haviv & Bar Genish
+ *
+ */
 public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 	Maze3d simpleMaze;
 	
-	// Generate a new Maze3d object according to user dimensions
+	/**
+	 * This method generates mazes by user defined sizes, following a random pattern.
+	 * 
+	 * @param sizeX Size of x dimension to be used in maze.
+	 * @param sizeY Size of y dimension to be used in maze.
+	 * @param sizeZ Size of z dimension to be used in maze.
+	 *
+	 * @return Maze3d This returns the fully generated maze.
+	 */
 	public Maze3d generate(int sizeX, int sizeY, int sizeZ) {
 		Random rand = new Random();
 		simpleMaze = new Maze3d(sizeX, sizeY, sizeZ);
@@ -84,7 +103,12 @@ public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 		return simpleMaze;
 	}
 	
-	// Carves path from a cell to its neighbor in the given direction, used for generation of correct path
+	/**
+	 * This method carves a path from a specified position in the direction specified.
+	 * Carving means both clearing the destination cell and removing the wall standing in the way.
+	 * @param dir Direction to carve in.
+	 * @param pos Cell in maze to start carving from.
+	 */
 	private void carve(int dir, int[] pos){
 		switch (dir) {
 		case 0:

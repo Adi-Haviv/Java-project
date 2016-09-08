@@ -4,26 +4,54 @@ import java.util.ArrayList;
 
 import algorithms.mazeGenerators.*;
 
+/**
+ * This Adapter is used to convert a Maze3d object into a Searchable maze
+ * so that it may be used inside Searchers in order to find paths.
+ * 
+ * @author Adi Haviv & Bar Genish
+ *
+ */
 public class SearchableMazeAdapter implements Searchable<Position> {
 	private Maze3d maze;
 	State<Position> entry;
 	State<Position> exit;
 	
+	/**
+	 * Generates a Searchable Maze3d object.
+	 * 
+	 * @param maze Original maze to be made Searchable.
+	 */
 	public SearchableMazeAdapter(Maze3d maze){
 		this.maze = maze;
 		entry = new State<Position>("", 0, null, this.maze.getStartPosition());
 		exit = new State<Position>("",0,null,this.maze.getGoalPosition());
 	}
+	
+	/**
+	 * Required method by the Searchable interface.
+	 * Returns the entry State of the Searchable maze.
+	 */
 	@Override
 	public State<Position> getStartState() {
 		return entry;
 	}
-
+	
+	/**
+	 * Required method by the Searchable interface.
+	 * Returns the exit position of the Searchable maze.
+	 */
 	@Override
 	public State<Position> getGoalState() {
 		return exit;
 	}
 
+	/**
+	 * Required method by the Searchable interface.
+	 * Generates a list of possible movements around a given State.
+	 * A possible movement is a move that is within maze boundaries and no wall is present in the way.
+	 * 
+	 * @param s Position from which possible movement is checked.
+	 */
 	@Override
 	public ArrayList<State<Position>> getAllPossibleStates(State<Position> s) {
 		ArrayList<State<Position>> moves = new ArrayList<State<Position>>();
@@ -65,6 +93,15 @@ public class SearchableMazeAdapter implements Searchable<Position> {
 
 	}
 
+	/**
+	 * Required method by the Searchable interface.
+	 * Calculates the cost of a movement from a source State to a destination State.
+	 * 
+	 * @param src Source Position for possible movement.
+	 * @param dst Destination Position for possible movement.
+	 * 
+	 * @return double Cost of movement from source to destination.
+	 */
 	@Override
 	public double getMoveCost(State<Position> src, State<Position> dst){
 		return dst.getCost() - src.getCost();
