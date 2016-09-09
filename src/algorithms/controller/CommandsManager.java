@@ -16,6 +16,7 @@ public class CommandsManager {
 		this.view = view;		
 	}
 	
+	
 	public HashMap<String, Command> getCommandsMap() {
 		HashMap<String, Command> commands = new HashMap<String, Command>();
 		commands.put("generate_maze", new GenerateMazeCommand());
