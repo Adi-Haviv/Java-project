@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -61,13 +62,16 @@ public class CLI {
 		Thread IOThread = new Thread(InputLoop);
 		IOThread.start();
 		Command current;
+		String[] args;
 		
 		while(!command.equals(new String("exit"))){
 			command = userCommands.poll();
+			args = command.split(new String(" "));
+			
 			if (command != null){
-				current = commands.get(command);
+				current = commands.get(args[0]);
 				if(current != null){
-					current.doCommand();
+					current.doCommand(Arrays.copyOfRange(args, 1, args.length));
 				}
 			}
 		}
