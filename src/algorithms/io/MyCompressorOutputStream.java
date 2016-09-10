@@ -26,10 +26,10 @@ public class MyCompressorOutputStream extends OutputStream {
 			//if it is add one to `count`
 			//if not - sum take the count of the number (0/1) and Writes the specified byte to this output stream. and divide it by 255
 			if (arr[i] != currByte) {
-				while (count >= 255) {
-					out.write(255);
+				while (count >= 127) {
+					out.write(127);
 					out.write(currByte);
-					count -= 255;
+					count -= 127;
 				}
 				out.write(count);
 				out.write(currByte);
