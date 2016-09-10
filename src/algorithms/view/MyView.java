@@ -25,7 +25,7 @@ public class MyView implements View {
 
 	@Override
 	public void displayMaze(Maze3d maze) {
-		cli.write(maze);
+		cli.write(maze.toString());
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class MyView implements View {
 
 	@Override
 	public void displayCrossSectionBy(int[][] maze2d) {
-		cli.write(maze2d);
+		cli.write(maze2d.toString());
 		
 	}
 
@@ -68,7 +68,7 @@ public class MyView implements View {
 
 	@Override
 	public void displaySolution(Solution<Position> sol){
-		cli.write(sol);
+		cli.write(sol.toString());
 		
 	}
 	

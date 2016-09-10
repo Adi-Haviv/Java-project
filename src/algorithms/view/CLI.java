@@ -75,5 +75,11 @@ public class CLI {
 				}
 			}
 		}
+	}	
+	public void write(String string){
+		this.out.write(string);	
+	
 	}
+
 }
+
