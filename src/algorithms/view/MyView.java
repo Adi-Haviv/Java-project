@@ -1,12 +1,15 @@
 package algorithms.view;
 
 import java.util.HashMap;
-
+import algorithms.view.CLI;
 import algorithms.controller.Command;
 import algorithms.mazeGenerators.Maze3d;
 
 public class MyView implements View {
-
+	HashMap<String, Command> commands;
+	
+	CLI cli = new CLI(System.in,System.out,commands);
+	
 	@Override
 	public void notifyMazeIsReady(String name) {
 		// TODO Auto-generated method stub
