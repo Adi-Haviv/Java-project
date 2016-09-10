@@ -22,6 +22,7 @@ public class MyController implements Controller {
 		view.setCommands(commandsManager.getCommandsMap());
 	}
 		
+	
 	@Override
 	public void notifyMazeIsReady(String name) {
 		view.notifyMazeIsReady(name);
