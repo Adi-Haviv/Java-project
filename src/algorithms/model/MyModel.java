@@ -13,6 +13,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.search.BFS;
+import algorithms.search.DFS;
+import algorithms.search.Searchable;
+import algorithms.search.SearchableMazeAdapter;
+import algorithms.search.Searcher;
 import algorithms.search.Solution;
 import algorithms.controller.Controller;
 import algorithms.io.MyCompressorOutputStream;
@@ -21,7 +26,7 @@ import algorithms.io.MyDecompressorInputStream;
 public class MyModel implements Model {
 	private Controller controller;	
 	private Map<String, Maze3d> mazes = new ConcurrentHashMap<String, Maze3d>();
-	
+	private Map<String, Solution> solutions = new ConcurrentHashMap<String, Solution>();
 	private List<Thread> threads = new ArrayList<Thread>();
 
 	public MyModel(Controller controller) {
@@ -104,8 +109,26 @@ public class MyModel implements Model {
 
 	@Override
 	public void solveMaze(String name, String algorithm) {
-		// TODO Auto-generated method stub
+		Searcher<Position> searcher;
+		SearchableMazeAdapter maze = new SearchableMazeAdapter(mazes.get(name));
+		Solution<Position> sol;
 		
+		switch (algorithm) {
+		case "DFS":
+			searcher = new DFS<Position>();
+			sol = searcher.search(maze);
+			solutions.put(name, sol);
+			break;
+		
+		case "BFS":
+			searcher = new BFS<Position>();
+			sol = searcher.search(maze);
+			solutions.put(name, sol);
+			break;
+			
+		default:
+			break;
+		}
 	}
 
 	@Override
