@@ -4,65 +4,71 @@ import java.util.HashMap;
 import algorithms.view.CLI;
 import algorithms.controller.Command;
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
+import algorithms.search.Solution;
 
 public class MyView implements View {
 	HashMap<String, Command> commands;
 	
 	CLI cli = new CLI(System.in,System.out,commands);
 	
+	public void start(){
+		cli.start();
+	}
+	
 	@Override
 	public void notifyMazeIsReady(String name) {
-		// TODO Auto-generated method stub
+		String output = name + " maze is ready, Have Fun!";
+		cli.write(output);
 
 	}
 
 	@Override
 	public void displayMaze(Maze3d maze) {
-		// TODO Auto-generated method stub
-
+		cli.write(maze);
 	}
 
 	@Override
 	public void setCommands(HashMap<String, Command> commands) {
-		// TODO Auto-generated method stub
+		this.commands = commands;
 
 	}
-		//TODO add CLI as a data member 
-		//TODO add start method
 
 	@Override
 	public void displayDirectoryContents(String dirContents) {
-		// TODO Auto-generated method stub
+		cli.write(dirContents);
 		
 	}
 
 	@Override
 	public void displayCrossSectionBy(int[][] maze2d) {
-		// TODO Auto-generated method stub
+		cli.write(maze2d);
 		
 	}
 
 	@Override
 	public void notifyMazeIsSaved(String name) {
-		// TODO Auto-generated method stub
+		String output = name + " maze was saved succesfully";
+		cli.write(output);
 		
 	}
 
 	@Override
 	public void notifyMazeIsLoaded(String name) {
-		// TODO Auto-generated method stub
+		String output = name + " maze was loaded succesfully";
+		cli.write(output);
 		
 	}
 
 	@Override
 	public void notifyMazeIsSolved(String name) {
-		// TODO Auto-generated method stub
-		
+		String output = name + " maze was solved";
+		cli.write(output);		
 	}
 
 	@Override
-	public void displaySolution(String name) {
-		// TODO Auto-generated method stub
+	public void displaySolution(Solution<Position> sol){
+		cli.write(sol);
 		
 	}
 	

@@ -57,7 +57,7 @@ public class CLI {
 		this.commands = commands;
 	}
 	
-	void start(){
+	public void start(){
 		Runnable InputLoop = new IOLoop(in);
 		Thread IOThread = new Thread(InputLoop);
 		IOThread.start();
