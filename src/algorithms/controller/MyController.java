@@ -26,4 +26,22 @@ public class MyController implements Controller {
 	public void notifyMazeIsReady(String name) {
 		view.notifyMazeIsReady(name);
 	}
+
+	@Override
+	public void notifyMazeIsSaved(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsLoaded(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsSolved(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 }
