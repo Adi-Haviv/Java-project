@@ -30,19 +30,18 @@ public class MyController implements Controller {
 
 	@Override
 	public void notifyMazeIsSaved(String name) {
-		// TODO Auto-generated method stub
-		
+		view.notifyMazeIsSaved(name);
 	}
 
 	@Override
 	public void notifyMazeIsLoaded(String name) {
-		// TODO Auto-generated method stub
+		view.notifyMazeIsLoaded(name);
 		
 	}
 
 	@Override
 	public void notifyMazeIsSolved(String name) {
-		// TODO Auto-generated method stub
+		view.notifyMazeIsSolved(name);
 		
 	}
 }
