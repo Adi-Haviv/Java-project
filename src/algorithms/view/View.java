@@ -24,4 +24,5 @@ public interface View {
 	
 	void displaySolution(String name);
 	
+	
 }
