@@ -24,5 +24,7 @@ public class MyView implements View {
 		// TODO Auto-generated method stub
 
 	}
-
+		//TODO add CLI as a data member 
+		//TODO add start method
+		//TODO add methods according to commands table
 }
