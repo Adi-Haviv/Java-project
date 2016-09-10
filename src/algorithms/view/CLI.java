@@ -21,6 +21,12 @@ public class CLI {
 	final Queue<String> userCommands = new LinkedList<String>();
 	String command;
 	
+	CLI(InputStream in, OutputStream out, HashMap<String, Command> commands){
+		this.in = new BufferedReader(new InputStreamReader(in));
+		this.out = new PrintWriter(out);
+		this.commands = commands;
+	}
+	
 	// IOLoop class implements callable to be called as a separate thread, and return value to main
 	public class IOLoop implements Runnable{
 		ArrayList<String> commands = new ArrayList<String>();
@@ -51,13 +57,7 @@ public class CLI {
 		}	
 	}
 	
-	CLI(InputStream in, OutputStream out, HashMap<String, Command> commands){
-		this.in = new BufferedReader(new InputStreamReader(in));
-		this.out = new PrintWriter(out);
-		this.commands = commands;
-	}
-	
-	void start(){
+	public void start(){
 		Runnable InputLoop = new IOLoop(in);
 		Thread IOThread = new Thread(InputLoop);
 		IOThread.start();
