@@ -51,7 +51,6 @@ public class CLI {
 		}	
 	}
 	
-	public void start(){
 	CLI(InputStream in, OutputStream out, HashMap<String, Command> commands){
 		this.in = new BufferedReader(new InputStreamReader(in));
 		this.out = new PrintWriter(out);
