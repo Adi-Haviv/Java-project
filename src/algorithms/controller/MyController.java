@@ -21,6 +21,7 @@ public class MyController implements Controller {
 		commandsManager = new CommandsManager(model, view);
 		view.setCommands(commandsManager.getCommandsMap());
 	}
+		
 	
 	@Override
 	public void notifyMazeIsReady(String name) {
