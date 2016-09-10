@@ -26,5 +26,40 @@ public class MyView implements View {
 	}
 		//TODO add CLI as a data member 
 		//TODO add start method
-		//TODO add methods according to commands table
+
+	@Override
+	public void displayDirectoryContents(String dirContents) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayCrossSectionBy(int[][] maze2d) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsSaved(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsLoaded(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsSolved(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displaySolution(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 }
