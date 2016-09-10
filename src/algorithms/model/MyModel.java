@@ -1,5 +1,9 @@
 package algorithms.model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
@@ -11,6 +15,8 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.controller.Controller;
+import algorithms.io.MyCompressorOutputStream;
+import algorithms.io.MyDecompressorInputStream;
 
 public class MyModel implements Model {
 	private Controller controller;	
@@ -52,20 +58,48 @@ public class MyModel implements Model {
 
 	@Override
 	public int[][] getCrossSectionBy(int index, char axis, String name) {
-		// TODO Auto-generated method stub
+		switch (Character.toUpperCase(axis)) {
+		case 'X':
+			return mazes.get(name).getCrossSectionByX(index);
+		case 'Y':
+			return mazes.get(name).getCrossSectionByY(index);
+		case 'Z':
+			return mazes.get(name).getCrossSectionByZ(index);
+		}
 		return null;
 	}
 
 	@Override
 	public void saveMazeToFile(String name, String filename) {
-		// TODO Auto-generated method stub
-		
+		MyCompressorOutputStream out;
+		try {
+			out = new MyCompressorOutputStream(new FileOutputStream(filename));
+			try {
+				out.write(mazes.get(name).toByteArray());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void loadMazeFromFile(String filename, String name) {
-		// TODO Auto-generated method stub
-		
+		try {
+			MyDecompressorInputStream in = new MyDecompressorInputStream(new FileInputStream(filename));
+			byte[] mazeArr = null;
+			try {
+				in.read(mazeArr);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			mazes.put(name, new Maze3d(mazeArr));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

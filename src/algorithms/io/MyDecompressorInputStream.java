@@ -2,6 +2,7 @@ package algorithms.io;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MyDecompressorInputStream extends InputStream{
 	InputStream in;
@@ -46,5 +47,26 @@ public class MyDecompressorInputStream extends InputStream{
 		return b.length;
 	}
 	
+	public int read(List<Byte> list) throws IOException{
+		// reps receives repetitions of specific value.
+		// counter is used to count bytes already read, as well as control the loops.
+		byte reps = 0;
+		byte value;
+		
+		if(list.size() == 0){
+			return 0;
+		}
+		
+		while(reps != -1){
+			reps = (byte) in.read();
+			value = (byte) in.read();
+							
+			for (int i = 0; i < reps; i++){
+				list.add(new Byte(value));
+			}
+		}
+		
+		return list.size();
+	}
 
 }

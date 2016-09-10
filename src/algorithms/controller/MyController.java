@@ -21,9 +21,27 @@ public class MyController implements Controller {
 		commandsManager = new CommandsManager(model, view);
 		view.setCommands(commandsManager.getCommandsMap());
 	}
-		
+	
 	@Override
 	public void notifyMazeIsReady(String name) {
 		view.notifyMazeIsReady(name);
+	}
+
+	@Override
+	public void notifyMazeIsSaved(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsLoaded(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyMazeIsSolved(String name) {
+		// TODO Auto-generated method stub
+		
 	}
 }
