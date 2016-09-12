@@ -94,14 +94,14 @@ public class MyModel implements Model {
 		try {
 			MyDecompressorInputStream in = new MyDecompressorInputStream(new FileInputStream(filename));
 			byte[] mazeArr = null;
-			try {
-				in.read(mazeArr);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+			in.read(mazeArr);
 			mazes.put(name, new Maze3d(mazeArr));
+			in.close();
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

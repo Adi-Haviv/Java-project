@@ -58,27 +58,42 @@ public class CLI {
 	}
 	
 	public void start(){
-		Runnable InputLoop = new IOLoop(in);
-		Thread IOThread = new Thread(InputLoop);
-		IOThread.start();
-		Command current;
-		String[] args;
-		
-		while(!command.equals(new String("exit"))){
-			command = userCommands.poll();
-			args = command.split(new String(" "));
+		Thread IOThread = new Thread(new Runnable() {
+			Command current;
+			String[] args;
+			String command;
+			BufferedReader in;
 			
-			if (command != null){
-				current = commands.get(args[0]);
-				if(current != null){
-					current.doCommand(Arrays.copyOfRange(args, 1, args.length));
-				}
+			// Runs when started as a thread
+			@Override
+			public void run() {
+				try{
+					// Creates arraylist of string to return from user input to main thread.
+					command = in.readLine();
+					args = command.split(" ");
+					
+					while(!command.equals(new String("exit"))){
+						if (command != null){
+							current = commands.get(args[0]);
+							if(current != null){
+								current.doCommand(Arrays.copyOfRange(args, 1, args.length));
+							}
+						}						
+						Thread.sleep(100);
+						command = in.readLine();
+						
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}			
 			}
-		}
+		});
+		IOThread.start();
 	}	
 	public void write(String string){
 		this.out.write(string);	
-	
 	}
 
 }
