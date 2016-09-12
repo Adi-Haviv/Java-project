@@ -15,7 +15,6 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.BFS;
 import algorithms.search.DFS;
-import algorithms.search.Searchable;
 import algorithms.search.SearchableMazeAdapter;
 import algorithms.search.Searcher;
 import algorithms.search.Solution;
@@ -26,10 +25,14 @@ import algorithms.io.MyDecompressorInputStream;
 public class MyModel implements Model {
 	private Controller controller;	
 	private Map<String, Maze3d> mazes = new ConcurrentHashMap<String, Maze3d>();
-	private Map<String, Solution> solutions = new ConcurrentHashMap<String, Solution>();
+	private Map<String, Solution<Position>> solutions = new ConcurrentHashMap<String, Solution<Position>>();
 	private List<Thread> threads = new ArrayList<Thread>();
 
-	public MyModel(Controller controller) {
+	MyModel(Controller controller) {
+		this.controller = controller;
+	}
+	
+	public void setController(Controller controller){
 		this.controller = controller;
 	}
 	

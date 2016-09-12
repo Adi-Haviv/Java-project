@@ -1,16 +1,32 @@
 package algorithms.view;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import algorithms.view.CLI;
 import algorithms.controller.Command;
+import algorithms.controller.Controller;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 
 public class MyView implements View {
 	HashMap<String, Command> commands;
+	CLI cli;
+	PrintWriter out;
+	BufferedReader in;
+	Controller controller;
 	
-	CLI cli = new CLI(System.in,System.out,commands);
+	MyView(BufferedReader in, PrintWriter out){
+		this.in = in;
+		this.out = out;
+		
+		cli = new CLI(in,out);
+	}
+	
+	public void setController(Controller controller){
+		this.controller = controller;
+	}
 	
 	public void start(){
 		cli.start();
@@ -31,7 +47,7 @@ public class MyView implements View {
 	@Override
 	public void setCommands(HashMap<String, Command> commands) {
 		this.commands = commands;
-
+		cli.setCommands(commands);
 	}
 
 	@Override
