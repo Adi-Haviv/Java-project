@@ -5,6 +5,7 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.controller.Command;
+import algorithms.controller.Controller;
 
 public interface View {
 	
@@ -25,6 +26,8 @@ public interface View {
 	void notifyMazeIsSolved(String name);
 	
 	void displaySolution(Solution<Position> sol);
+	
+	void setController(Controller controller);
 	
 	
 }

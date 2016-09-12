@@ -1,5 +1,6 @@
 package algorithms.model;
 
+import algorithms.controller.Controller;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
@@ -23,5 +24,5 @@ public interface Model {
  	
 	void exit();
 	
-	//TODO add the table`s methods just like generate and get maze
+	void setController(Controller controller);
 }

@@ -72,6 +72,7 @@ public class MyModel implements Model {
 	 * This method sets the controller data member to the given controller.
 	 * @param controller
 	 */
+	@Override
 	public void setController(Controller controller){
 		this.controller = controller;
 	}

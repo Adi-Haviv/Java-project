@@ -41,6 +41,7 @@ public class MyView implements View {
 	 * Sets MyView's controller.
 	 * @param controller
 	 */
+	@Override
 	public void setController(Controller controller){
 		this.controller = controller;
 	}
