@@ -91,6 +91,9 @@ public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 			for(int j = 0; j< simpleMaze.maze[i].length; j++){
 				for (int k = 0; k < simpleMaze.maze[i][j].length; k++) {
 					if(!(path.contains(simpleMaze.maze[i][j][k]))){
+						if(isDone){
+							return null;
+						}
 						simpleMaze.maze[i][j][k] = (rand.nextInt() % 2 == 0) ? 1 : 0;
 					}
 				}

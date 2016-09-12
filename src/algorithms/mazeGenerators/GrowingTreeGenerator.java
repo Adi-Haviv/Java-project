@@ -34,7 +34,7 @@ public class GrowingTreeGenerator extends CommonMaze3dGenerator{
 		List<int[]> removed = new ArrayList<int[]>();
 		int[] cell = { rand.nextInt(sizeX) * 2, rand.nextInt(sizeY) * 2, rand.nextInt(sizeZ) * 2 };
 		cells.add(cell);
-		while(!(cells.isEmpty())){
+		while(!(cells.isEmpty()) && !isDone){
 			cell = chooseCell(cells);
 			neighbors.removeAll(neighbors);
 			neighbors.addAll(checkNeighbors(cell, cells, removed));
@@ -286,5 +286,6 @@ public class GrowingTreeGenerator extends CommonMaze3dGenerator{
 		}
 		return cell;
 	}
+	
 }
 

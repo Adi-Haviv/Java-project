@@ -27,7 +27,35 @@ public class MyModel implements Model {
 	private Map<String, Maze3d> mazes = new ConcurrentHashMap<String, Maze3d>();
 	private Map<String, Solution<Position>> solutions = new ConcurrentHashMap<String, Solution<Position>>();
 	private List<Thread> threads = new ArrayList<Thread>();
-
+	private List<GeneratorRunnable> generators = new ArrayList<GeneratorRunnable>();
+	
+	public class GeneratorRunnable implements Runnable{
+		int xSize;
+		int ySize;
+		int zSize;
+		String name;
+		GrowingTreeGenerator generator = new GrowingTreeGenerator();
+		
+		public GeneratorRunnable(String name, int xSize, int ySize, int zSize){
+			this.xSize = xSize;
+			this.ySize = ySize;
+			this.zSize = zSize;
+			this.name = name;
+		}
+		
+		@Override
+		public void run() {
+			Maze3d maze = generator.generate(xSize, ySize, zSize);
+			mazes.put(name, maze);
+			
+			controller.notifyMazeIsReady(name);				
+		}	
+		
+		public void terminate(){
+			generator.setIsDone(true);
+		}
+	}
+	
 	MyModel(Controller controller) {
 		this.controller = controller;
 	}
@@ -38,17 +66,9 @@ public class MyModel implements Model {
 	
 	@Override
 	public void generateMaze(String name, int rows, int columns, int floors) {
-		Thread thread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				GrowingTreeGenerator generator = new GrowingTreeGenerator();
-				Maze3d maze = generator.generate(rows, columns , floors);
-				mazes.put(name, maze);
-				
-				controller.notifyMazeIsReady(name);				
-			}	
-		});
+		GeneratorRunnable generator = new GeneratorRunnable(name, rows, columns, floors);
+		Thread thread = new Thread(generator);
+		generators.add(generator);
 		thread.start();
 		threads.add(thread);		
 	}
@@ -136,13 +156,14 @@ public class MyModel implements Model {
 
 	@Override
 	public Solution<Position> getMazeSolution(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return solutions.get(name);
 	}
 
 	@Override
 	public void exit() {
-		// TODO Auto-generated method stub
+		for(GeneratorRunnable generator: generators){
+			generator.terminate();
+		}
 		
 	}
 
