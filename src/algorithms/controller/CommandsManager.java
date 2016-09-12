@@ -67,7 +67,15 @@ public class CommandsManager {
 		}
 	}
 	
-	
+	public class GetCrossSectionByCommand implements Command{
+		@Override
+		public void doCommand (String[] args){
+			int index = Integer.parseInt(args[0]);
+			char axis = args[1].charAt(0);
+			String name = args[2];
+			model.getCrossSectionBy(index, axis, name);
+		}
+	}
 	
 }
 
