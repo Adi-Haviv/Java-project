@@ -5,11 +5,11 @@ import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 
 public interface Model {
-	void generateMaze(String name, int rows, int columns , int floors);
+	void generateMaze(String name, int rows, int columns , int floors); //Realized in Command Manager
 	
-	Maze3d getMaze(String name);
+	Maze3d getMaze(String name); //Realized in Command Manager
 	
-	String getDirectoryContents(String path);
+	String getDirectoryContents(String path); 
 	
 	int[][] getCrossSectionBy(int index, char axis, String name);
 	

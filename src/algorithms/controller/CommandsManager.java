@@ -48,6 +48,17 @@ public class CommandsManager {
 		
 	}
 	
+	public class GetMazeCommand implements Command{
+		@Override
+		public void doCommand (String[] args){
+			String name = args[0];
+			model.getMaze(name);
+			
+		}
+		
+	}
+	
+	
 	
 }
 
