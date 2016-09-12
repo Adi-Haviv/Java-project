@@ -49,6 +49,7 @@ public class MyView implements View {
 	/**
 	 * Starts the cli and the programs functionality.
 	 */
+	@Override
 	public void start(){
 		cli.start();
 	}
