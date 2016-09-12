@@ -69,14 +69,6 @@ public class MyModel implements Model {
 	}
 	
 	/**
-	 * C'tor
-	 * @param controller
-	 */
-	MyModel(Controller controller) {
-		this.controller = controller;
-	}
-	
-	/**
 	 * This method sets the controller data member to the given controller.
 	 * @param controller
 	 */

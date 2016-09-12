@@ -30,7 +30,7 @@ public class MyView implements View {
 	 * @param in BufferedReader to be used for input.
 	 * @param out PrintWriter to be used for output.
 	 */
-	MyView(BufferedReader in, PrintWriter out){
+	public MyView(BufferedReader in, PrintWriter out){
 		this.in = in;
 		this.out = out;
 		
