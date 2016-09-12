@@ -1,15 +1,14 @@
 package algorithms.model;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
@@ -22,6 +21,15 @@ import algorithms.controller.Controller;
 import algorithms.io.MyCompressorOutputStream;
 import algorithms.io.MyDecompressorInputStream;
 
+/**
+ * <h1> MyModel Class </h1>
+ * This Class is the backend of the project.
+ * The model holds all data for the program.
+ * The model also has all methods for generating data or for handling it in any way.
+ * 
+ * @author Adi Haviv & Bar Genish
+ *
+ */
 public class MyModel implements Model {
 	private Controller controller;	
 	private Map<String, Maze3d> mazes = new ConcurrentHashMap<String, Maze3d>();
@@ -29,6 +37,10 @@ public class MyModel implements Model {
 	private List<Thread> threads = new ArrayList<Thread>();
 	private List<GeneratorRunnable> generators = new ArrayList<GeneratorRunnable>();
 	
+	/**
+	 * This Class is used as a Runnable object so that it may be run as a thread.
+	 * This is important if the user wishes to generate multiple mazes at once without the program freezing.
+	 */
 	public class GeneratorRunnable implements Runnable{
 		int xSize;
 		int ySize;
@@ -56,14 +68,26 @@ public class MyModel implements Model {
 		}
 	}
 	
+	/**
+	 * C'tor
+	 * @param controller
+	 */
 	MyModel(Controller controller) {
 		this.controller = controller;
 	}
 	
+	/**
+	 * This method sets the controller data member to the given controller.
+	 * @param controller
+	 */
 	public void setController(Controller controller){
 		this.controller = controller;
 	}
 	
+	/**
+	 * This method generates a maze based on user inputs.
+	 * @param name 
+	 */
 	@Override
 	public void generateMaze(String name, int rows, int columns, int floors) {
 		GeneratorRunnable generator = new GeneratorRunnable(name, rows, columns, floors);
@@ -73,17 +97,41 @@ public class MyModel implements Model {
 		threads.add(thread);		
 	}
 
+
+	/**
+	 * This method returns a maze object from the list of saved mazes.
+	 * 
+	 * @param name Name of maze to return.
+	 */
 	@Override
 	public Maze3d getMaze(String name) {
 		return mazes.get(name);
 	}
+	
+	/**
+	 * Returns the contents of a directory in the file system.
+	 */
 
 	@Override
 	public String getDirectoryContents(String path) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder sb = new StringBuilder();
+		File dir = new File(path);
+		File[] filesList = dir.listFiles();
+		for (File file : filesList) {
+		    if (file.isFile()) {
+		        sb.append(file.getName());
+		    }
+		}
+		return sb.toString();
 	}
 
+	
+	/**
+	 * Returns a maze's cross section by a given axis.
+	 * @param index Index in specified axis at which to take cross section.
+	 * @param axis Axis to be used for cross section.
+	 * @param name Name of maze from which to take cross section.
+	 */
 	@Override
 	public int[][] getCrossSectionBy(int index, char axis, String name) {
 		switch (Character.toUpperCase(axis)) {
@@ -96,6 +144,10 @@ public class MyModel implements Model {
 		}
 		return null;
 	}
+	
+	/**
+	 * Saves a maze from memory to a file.
+	 */
 
 	@Override
 	public void saveMazeToFile(String name, String filename) {
@@ -111,6 +163,10 @@ public class MyModel implements Model {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Loads a maze from a file to memory.
+	 */
 
 	@Override
 	public void loadMazeFromFile(String filename, String name) {
@@ -130,6 +186,13 @@ public class MyModel implements Model {
 		}
 	}
 
+	
+	/**
+	 * Solves a maze and stores the solution in the solutions data member.
+	 * 
+	 * @param name Name of maze to be solved.
+	 * @param algorithm Solution algorithm to be used to solve the maze.
+	 */
 	@Override
 	public void solveMaze(String name, String algorithm) {
 		Searcher<Position> searcher;
@@ -153,12 +216,22 @@ public class MyModel implements Model {
 			break;
 		}
 	}
+	
+	/**
+	 * Returns a maze's solution.
+	 * 
+	 * @param name Name of the maze who's solution should be returned.
+	 */
 
 	@Override
 	public Solution<Position> getMazeSolution(String name) {
 		return solutions.get(name);
 	}
 
+	
+	/**
+	 * Stops all maze generation threads and dies.
+	 */
 	@Override
 	public void exit() {
 		for(GeneratorRunnable generator: generators){
