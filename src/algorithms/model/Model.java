@@ -13,14 +13,14 @@ public interface Model {
 	
 	int[][] getCrossSectionBy(int index, char axis, String name); //Realized in Command Manager
 	
-	void saveMazeToFile(String name, String filename);
+	void saveMazeToFile(String name, String filename); //Realized in Command Manager
 	
-	void loadMazeFromFile(String filename, String name);
+	void loadMazeFromFile(String filename, String name); //Realized in Command Manager
 	
-	void solveMaze(String name, String algorithm);
+	void solveMaze(String name, String algorithm); //Realized in Command Manager
 	
-	Solution<Position> getMazeSolution(String name);
-	
+	Solution<Position> getMazeSolution(String name); //Realized in Command Manager 
+ 	
 	void exit();
 	
 	//TODO add the table`s methods just like generate and get maze
