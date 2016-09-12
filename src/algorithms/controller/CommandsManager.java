@@ -58,6 +58,15 @@ public class CommandsManager {
 		
 	}
 	
+	public class GetDirectoryContentsCommand implements Command{
+		@Override
+		public void doCommand(String[] args){
+			String path = args[0];
+			model.getDirectoryContents(path);
+			
+		}
+	}
+	
 	
 	
 }
