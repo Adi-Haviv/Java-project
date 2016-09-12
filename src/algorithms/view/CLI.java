@@ -75,6 +75,7 @@ public class CLI {
 						command = in.readLine();
 						
 					}
+					commands.get("exit").doCommand(null);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
