@@ -12,13 +12,22 @@ public class CommandsManager {
 	
 	private Model model;
 	private View view;
-		
+	
+	/**C`TOR
+	 * 
+	 * @param model
+	 * @param view
+	 * @author Adi Haviv & Bar Genish
+	 */
 	public CommandsManager(Model model, View view) {
 		this.model = model;
 		this.view = view;		
 	}
 	
-	
+	/**
+	 * This Class creates HashMap for the Commands and their names
+	 * @return HashMap<String, Command>
+	 */
 	public HashMap<String, Command> getCommandsMap() {
 		HashMap<String, Command> commands = new HashMap<String, Command>();
 		commands.put("generate_maze", new GenerateMazeCommand());
@@ -34,6 +43,10 @@ public class CommandsManager {
 		return commands;
 	}
 	
+	/**
+	 * This Class defines the objects that will be used for `generate Maze` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class GenerateMazeCommand implements Command {
 
 		@Override
@@ -46,6 +59,10 @@ public class CommandsManager {
 		}		
 	}
 
+	/**
+	 * This Class defines the objects that will be used for `Get Maze` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class GetMazeCommand implements Command{
 		@Override
 		public void doCommand (String[] args){
@@ -56,6 +73,10 @@ public class CommandsManager {
 		
 	}
 	
+	/**
+	 * This Class defines the objects that will be used for `Get Directory Contents` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class GetDirectoryContentsCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
@@ -65,6 +86,11 @@ public class CommandsManager {
 		}
 	}
 	
+
+	/**
+	 * This Class defines the objects that will be used for `Get Cross Section` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class GetCrossSectionByCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
@@ -75,6 +101,10 @@ public class CommandsManager {
 		}
 	}
 	
+	/**
+	 * This Class defines the objects that will be used for `Save Maze To File` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class SaveMazeToFileCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
@@ -83,7 +113,11 @@ public class CommandsManager {
 			model.saveMazeToFile(name, filename);
 		}
 	}
-	
+
+	/**
+	 * This Class defines the objects that will be used for `Load Maze From File` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class LoadMazeFromFileCommand implements Command {
 		@Override
 		public void doCommand(String[] args){
@@ -93,6 +127,11 @@ public class CommandsManager {
 		}
 	}
 	
+
+	/**
+	 * This Class defines the objects that will be used for `Solve Maze` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class SolveMazeCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
@@ -101,7 +140,11 @@ public class CommandsManager {
 			model.solveMaze(name, algorithm);
 		}
 	}
-	
+
+	/**
+	 * This Class defines the objects that will be used for `Get Maze Solution` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class GetMazeSolutionCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
@@ -109,7 +152,11 @@ public class CommandsManager {
 			model.getMazeSolution(name);
 		}
 	}
-	
+
+	/**
+	 * This Class defines the objects that will be used for `Exit` method in class model
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class ExitCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
@@ -117,6 +164,10 @@ public class CommandsManager {
 		}
 	}
 
+	/**
+	 * This Class defines the objects that will be used for `Display Maze` method in class My View
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class DisplayMazeCommand implements Command {
 		@Override
 		public void doCommand(String[] args){
@@ -124,8 +175,12 @@ public class CommandsManager {
 			Maze3d maze = model.getMaze(name);
 			view.displayMaze(maze);
 		}
-	}
-		
+	}	
+
+	/**
+	 * This Class defines the objects that will be used for `Display Solution` method in class My View
+	 * This Class`s functionality is implement in the doCommand method 
+	 */
 	public class DisplaySolutionCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
