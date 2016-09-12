@@ -93,7 +93,7 @@ public class State<T> implements Comparable<State<T>> {
 	
 	@Override
 	public boolean equals(Object obj) {
-		State<T> s = (State<T>)obj;
+		State<?> s = (State<?>)obj;
 		return (s.getValue().equals(this.getValue()));
 	}
 	
