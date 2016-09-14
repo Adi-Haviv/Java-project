@@ -38,7 +38,7 @@ public class CommandsManager {
 		commands.put("load_maze", new LoadMazeFromFileCommand());
 		commands.put("solve", new SolveMazeCommand());
 		commands.put("display_solution", new DisplaySolutionCommand());
-		
+		commands.put("exit", new ExitCommand());
 		
 		return commands;
 	}

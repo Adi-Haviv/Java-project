@@ -31,4 +31,5 @@ public interface View {
 	
 	void start();
 	
+	void write(String str);
 }

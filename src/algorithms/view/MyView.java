@@ -34,7 +34,7 @@ public class MyView implements View {
 		this.in = in;
 		this.out = out;
 		
-		cli = new CLI(in,out);
+		this.cli = new CLI(in,out);
 	}
 	
 	/**
@@ -69,7 +69,11 @@ public class MyView implements View {
 	 */
 	@Override
 	public void displayMaze(Maze3d maze) {
-		cli.write(maze.toString());
+		try{
+			cli.write(maze.toString());
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -137,5 +141,8 @@ public class MyView implements View {
 		cli.write(sol.toString());	
 	}
 	
-	
+	@Override
+	public void write(String str){
+		cli.write(str);
+	}
 }

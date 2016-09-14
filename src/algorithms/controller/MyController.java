@@ -44,4 +44,9 @@ public class MyController implements Controller {
 		view.notifyMazeIsSolved(name);
 		
 	}
+	
+	@Override
+	public void write(String str){
+		view.write(str);
+	}
 }

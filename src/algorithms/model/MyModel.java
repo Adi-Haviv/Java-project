@@ -106,7 +106,7 @@ public class MyModel implements Model {
 	 */
 
 	@Override
-	public String getDirectoryContents(String path) {
+	public void getDirectoryContents(String path) {
 		StringBuilder sb = new StringBuilder();
 		File dir = new File(path);
 		File[] filesList = dir.listFiles();
@@ -115,7 +115,7 @@ public class MyModel implements Model {
 		        sb.append(file.getName());
 		    }
 		}
-		return sb.toString();
+		controller.write(sb.toString());
 	}
 
 	

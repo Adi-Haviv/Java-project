@@ -30,11 +30,20 @@ public class CLI {
 	 * @param in BufferedReader to be used for input.
 	 * @param out PrintWriter to be used for output.
 	 */
-	CLI(BufferedReader in, PrintWriter out){
+	public CLI(BufferedReader in, PrintWriter out){
 		this.in = in;
 		this.out = out;
 	}
-
+	
+	private void printMenu() {
+		out.print("Choose command: (");
+		for (String command : commands.keySet()) {
+			out.print(command + ",");
+		}
+		out.println(")");
+		out.flush();
+	}
+	
 	/**
 	 * Sets the commands data member to commands hashmap received as parameter.
 	 * @param commands HashMap that maps Command objects to user String objects.
@@ -54,28 +63,36 @@ public class CLI {
 			Command current;
 			String[] args;
 			String command;
-			BufferedReader in;
 			
 			// Runs when started as a thread
 			@Override
 			public void run() {
+				printMenu();
+				
 				try{
 					// Creates arraylist of string to return from user input to main thread.
 					command = in.readLine();
-					args = command.split(" ");
-					
-					while(!command.equals(new String("exit"))){
-						if (command != null){
-							current = commands.get(args[0]);
-							if(current != null){
-								current.doCommand(Arrays.copyOfRange(args, 1, args.length));
+					while(true){
+						if(command == null){
+							
+						}
+						else if (!command.equals("exit")){
+							args = command.split(" ");
+							if (command != null){
+								current = commands.get(args[0]);
+								if(current != null){
+									current.doCommand(Arrays.copyOfRange(args, 1, args.length));
+								}
 							}
-						}						
+						}
+						else if(command.equals("exit")){
+							commands.get("exit").doCommand(null);
+							break;
+						}
 						Thread.sleep(100);
 						command = in.readLine();
 						
 					}
-					commands.get("exit").doCommand(null);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
@@ -91,7 +108,8 @@ public class CLI {
 	 * @param string String to be written to PrintWriter.
 	 */
 	public void write(String string){
-		this.out.write(string);	
+		this.out.println(string);
+		this.out.flush();
 	}
 
 }

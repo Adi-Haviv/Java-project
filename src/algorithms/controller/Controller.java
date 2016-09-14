@@ -9,4 +9,5 @@ public interface Controller {
 	
 	void notifyMazeIsSolved(String name);
 	
+	void write(String str);
 }
