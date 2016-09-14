@@ -57,10 +57,15 @@ public class MyModel implements Model {
 		
 		@Override
 		public void run() {
+			try{
 			Maze3d maze = generator.generate(xSize, ySize, zSize);
 			mazes.put(name, maze);
 			
-			controller.notifyMazeIsReady(name);				
+			controller.notifyMazeIsReady(name);
+			}
+			catch(IllegalArgumentException e){
+				controller.write("Please tell me how a maze is built of " + xSize + " rows, " + ySize + " columns, and " + zSize + " floors? please try again '>.>") ;
+			}
 		}	
 		
 		public void terminate(){
@@ -88,6 +93,7 @@ public class MyModel implements Model {
 		generators.add(generator);
 		thread.start();
 		threads.add(thread);		
+		
 	}
 
 
@@ -107,15 +113,20 @@ public class MyModel implements Model {
 
 	@Override
 	public void getDirectoryContents(String path) {
+		try{
 		StringBuilder sb = new StringBuilder();
 		File dir = new File(path);
 		File[] filesList = dir.listFiles();
 		for (File file : filesList) {
 		    if (file.isFile()) {
 		        sb.append(file.getName());
-		    }
-		}
+		    	}
+			}
 		controller.write(sb.toString());
+		}
+		catch(NullPointerException e){
+			controller.write("Not a valid directory");
+		}
 	}
 
 	
@@ -171,10 +182,8 @@ public class MyModel implements Model {
 			mazes.put(name, new Maze3d(mazeArr));
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

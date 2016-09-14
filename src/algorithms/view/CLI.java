@@ -97,7 +97,7 @@ public class CLI {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}			
+				} 			
 			}
 		});
 		IOThread.start();

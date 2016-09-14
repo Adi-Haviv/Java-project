@@ -26,7 +26,7 @@ public class GrowingTreeGenerator extends CommonMaze3dGenerator{
 	 *
 	 * @return Maze3d This returns the fully generated maze.
 	 */
-	public Maze3d generate(int sizeX, int sizeY, int sizeZ) {
+	public Maze3d generate(int sizeX, int sizeY, int sizeZ) throws IllegalArgumentException{
 		int carveDir;
 		maze = new Maze3d(sizeX, sizeY, sizeZ);
 		List<Integer> neighbors = new ArrayList<Integer>();

@@ -48,16 +48,17 @@ public class CommandsManager {
 	 * This Class`s functionality is implement in the doCommand method 
 	 */
 	public class GenerateMazeCommand implements Command {
-
+		
 		@Override
-		public void doCommand(String[] args) {
-			String name = args[0];
-			int rows = Integer.parseInt(args[1]);
-			int columns = Integer.parseInt(args[2]);
-			int floors = Integer.parseInt(args[3]);
-			model.generateMaze(name, rows, columns , floors);
-		}		
-	}
+		public void doCommand(String[] args){
+			
+				String name = args[0];
+				int rows = Integer.parseInt(args[1]);
+				int columns = Integer.parseInt(args[2]);
+				int floors = Integer.parseInt(args[3]);
+				model.generateMaze(name, rows, columns , floors);
+			}
+		}
 
 	/**
 	 * This Class defines the objects that will be used for `Get Maze` method in class model

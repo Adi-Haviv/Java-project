@@ -59,7 +59,7 @@ public class Maze3d{
 			}
 		}
 		catch(NegativeArraySizeException e){
-			System.err.println("Invalid maze size recieved.\n" + e);
+			System.err.println("Invalid maze size recieved.");
 		}
 	}
 	

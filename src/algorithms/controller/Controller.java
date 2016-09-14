@@ -1,5 +1,9 @@
 package algorithms.controller;
-
+/**
+ * 
+ * @author Adi Haviv & Bar Genish
+ *
+ */
 public interface Controller {
 	void notifyMazeIsReady(String name);
 		
