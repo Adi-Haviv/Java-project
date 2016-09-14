@@ -10,7 +10,7 @@ public interface Model {
 	
 	Maze3d getMaze(String name); //Realized in Command Manager
 	
-	void getDirectoryContents(String path); //Realized in Command Manager
+	String getDirectoryContents(String path); //Realized in Command Manager
 	
 	int[][] getCrossSectionBy(int index, char axis, String name); //Realized in Command Manager
 	

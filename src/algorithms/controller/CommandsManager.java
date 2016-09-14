@@ -62,20 +62,6 @@ public class CommandsManager {
 				System.out.println("Not enough arguments recieved");
 		}
 	}
-
-	/**
-	 * This Class defines the objects that will be used for `Get Maze` method in class model
-	 * This Class`s functionality is implement in the doCommand method 
-	 */
-	public class GetMazeCommand implements Command{
-		@Override
-		public void doCommand (String[] args){
-			String name = args[0];
-			model.getMaze(name);
-			
-		}
-		
-	}
 	
 	/**
 	 * This Class defines the objects that will be used for `Get Directory Contents` method in class model
@@ -85,8 +71,8 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args){
 			String path = args[0];
-			model.getDirectoryContents(path);
-			
+			String dir = model.getDirectoryContents(path);
+			view.displayDirectoryContents(dir);
 		}
 	}
 	
@@ -98,10 +84,16 @@ public class CommandsManager {
 	public class GetCrossSectionByCommand implements Command{
 		@Override
 		public void doCommand(String[] args){
+			try{
 			int index = Integer.parseInt(args[0]);
 			char axis = args[1].charAt(0);
 			String name = args[2];
-			model.getCrossSectionBy(index, axis, name);
+			int[][] maze2d = model.getCrossSectionBy(index, axis, name);
+			view.displayCrossSectionBy(maze2d);
+			}
+		catch(NumberFormatException e){
+			System.out.println("Not a valid index");
+			}
 		}
 	}
 	

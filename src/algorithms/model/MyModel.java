@@ -118,7 +118,7 @@ public class MyModel implements Model {
 	 */
 
 	@Override
-	public void getDirectoryContents(String path) {
+	public String getDirectoryContents(String path) {
 		try{
 		StringBuilder sb = new StringBuilder();
 		File dir = new File(path);
@@ -128,11 +128,12 @@ public class MyModel implements Model {
 		        sb.append(file.getName());
 		    	}
 			}
-		controller.write(sb.toString());
+		return sb.toString();
 		}
 		catch(NullPointerException e){
 			controller.write("Not a valid directory");
 		}
+		return null;
 	}
 
 	
@@ -144,6 +145,7 @@ public class MyModel implements Model {
 	 */
 	@Override
 	public int[][] getCrossSectionBy(int index, char axis, String name) {
+		try{
 		switch (Character.toUpperCase(axis)) {
 		case 'X':
 			return mazes.get(name).getCrossSectionByX(index);
@@ -152,9 +154,12 @@ public class MyModel implements Model {
 		case 'Z':
 			return mazes.get(name).getCrossSectionByZ(index);
 		}
+		}
+		catch(NullPointerException e){
+			controller.write("Not a valid maze' Sorry honey");
+		}
 		return null;
 	}
-	
 	/**
 	 * Saves a maze from memory to a file.
 	 */
@@ -233,6 +238,7 @@ public class MyModel implements Model {
 		default:
 			break;
 		}
+		controller.notifyMazeIsSolved(name);
 	}
 	
 	/**
