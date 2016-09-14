@@ -51,14 +51,17 @@ public class CommandsManager {
 		
 		@Override
 		public void doCommand(String[] args){
-			
+			if(args.length == 4){
 				String name = args[0];
 				int rows = Integer.parseInt(args[1]);
 				int columns = Integer.parseInt(args[2]);
 				int floors = Integer.parseInt(args[3]);
 				model.generateMaze(name, rows, columns , floors);
 			}
+			else
+				System.out.println("Not enough arguments recieved");
 		}
+	}
 
 	/**
 	 * This Class defines the objects that will be used for `Get Maze` method in class model

@@ -72,7 +72,7 @@ public class MyView implements View {
 		try{
 			cli.write(maze.toString());
 		}catch (NullPointerException e) {
-			e.printStackTrace();
+			controller.write("Not a valid maze");
 		}
 	}
 	

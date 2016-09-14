@@ -104,7 +104,13 @@ public class MyModel implements Model {
 	 */
 	@Override
 	public Maze3d getMaze(String name) {
+		try{
 		return mazes.get(name);
+		}
+		catch (NullPointerException e){
+			controller.write("Not a valid maze");
+		}
+		return new Maze3d();
 	}
 	
 	/**
@@ -201,16 +207,26 @@ public class MyModel implements Model {
 		SearchableMazeAdapter maze = new SearchableMazeAdapter(mazes.get(name));
 		Solution<Position> sol;
 		
-		switch (algorithm) {
+		switch (algorithm.toUpperCase()) {
 		case "DFS":
 			searcher = new DFS<Position>();
 			sol = searcher.search(maze);
+			
+			if (solutions.containsKey(name)){
+				solutions.remove(name);
+			}
+			
 			solutions.put(name, sol);
 			break;
 		
 		case "BFS":
 			searcher = new BFS<Position>();
 			sol = searcher.search(maze);
+			
+			if (solutions.containsKey(name)){
+				solutions.remove(name);
+			}
+			
 			solutions.put(name, sol);
 			break;
 			
@@ -227,7 +243,13 @@ public class MyModel implements Model {
 
 	@Override
 	public Solution<Position> getMazeSolution(String name) {
+		try{
 		return solutions.get(name);
+		}
+		catch(NullPointerException e){
+			controller.write("Not a valid maze");
+		}
+		return new Solution<Position>();
 	}
 
 	
