@@ -187,10 +187,16 @@ public class MyModel implements Model {
 	public void loadMazeFromFile(String filename, String name) {
 		try {
 			MyDecompressorInputStream in = new MyDecompressorInputStream(new FileInputStream(filename));
-			byte[] mazeArr = null;
-		
+			List<Byte> mazeArr = new ArrayList<Byte>();
+			byte[] mazeByte;
+			
 			in.read(mazeArr);
-			mazes.put(name, new Maze3d(mazeArr));
+			
+			mazeByte = new byte[mazeArr.size()];
+			for(int i = 0; i < mazeArr.size(); i++){
+				mazeByte[i] = mazeArr.get(i).byteValue();
+			}
+			mazes.put(name, new Maze3d(mazeByte));
 			in.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

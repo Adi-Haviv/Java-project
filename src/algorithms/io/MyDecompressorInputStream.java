@@ -53,10 +53,6 @@ public class MyDecompressorInputStream extends InputStream{
 		byte reps = 0;
 		byte value;
 		
-		if(list.size() == 0){
-			return 0;
-		}
-		
 		while(reps != -1){
 			reps = (byte) in.read();
 			value = (byte) in.read();
