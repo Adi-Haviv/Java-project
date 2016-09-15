@@ -199,7 +199,7 @@ public class MyModel implements Model {
 			mazes.put(name, new Maze3d(mazeByte));
 			in.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			controller.write("File not found");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
