@@ -2,20 +2,38 @@ package algorithms.io;
 
 import java.io.IOException;
 import java.io.OutputStream;
+/**
+ * <h1> MyCompressirOutputStream </h1>
+ * This Class implements the OutputStream Interface.
+ * This class Compress the maze into a ByteArray
+ * @author Adi Haviv & Bar Genish
+ *
+ */
 
 public class MyCompressorOutputStream extends OutputStream {
 	OutputStream out;	
-	
-	//Constructor
+
+/**
+ * C`Tor
+ */
 	public MyCompressorOutputStream(OutputStream out) {
 		this.out = out;
 	}
-
+	/**
+	 * This method write a maze object to the output stream.
+	 * @param maze Maze to return.
+	 */
 	@Override
 	public void write(int maze) throws IOException {
 		out.write(maze);
 	}
-	
+	/**
+	 * This method creates a ByteArray according to a maze that been given
+	 * The ByteArray runs over the maze and number the sequence of each number
+	 * @param arr The ByteArray
+	 * @param currByte the current cell the been tested 
+	 * name Name of maze to return.
+	 */
 	public void write(byte[] arr) throws IOException {
 		byte currByte = arr[0];
 		int count = 1;

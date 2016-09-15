@@ -1,6 +1,6 @@
 package algorithms.controller;
 /**
- * 
+ * <h1> Controller Interface </h1>
  * @author Adi Haviv & Bar Genish
  *
  */
