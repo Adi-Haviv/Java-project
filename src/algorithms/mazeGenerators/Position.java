@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -11,7 +12,12 @@ import java.util.Arrays;
  * @author Adi Haviv & Bar Genish
  *
  */
-public class Position{
+public class Position implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public int[] getCoords() {
 		return coords;
 	}
