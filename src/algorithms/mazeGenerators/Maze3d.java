@@ -9,13 +9,18 @@
 
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import algorithms.mazeGenerators.Position;
 
-public class Maze3d{
+public class Maze3d implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int[][][] maze;
 	Position entry = new Position();
 	Position exit = new Position();
