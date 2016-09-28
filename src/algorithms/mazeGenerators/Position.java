@@ -30,12 +30,6 @@ public class Position implements Serializable{
 
 	int[] coords = new int[3];
 	
-	public Position(Position p){
-		coords[0] = p.getCoords()[0];
-		coords[1] = p.getCoords()[1];
-		coords[2] = p.getCoords()[2];
-	}
-	
 	public Position(){
 		coords[0] = 0;
 		coords[1] = 0;
@@ -47,6 +41,13 @@ public class Position implements Serializable{
 		coords[1] = y;
 		coords[2] = z;
 	}
+	
+	public Position(Position p){
+		this.coords[0] = p.getCoords()[0];
+		this.coords[1] = p.getCoords()[1];
+		this.coords[2] = p.getCoords()[2];
+	}
+	
 	@Override
 	public boolean equals(Object obj){
 		Position p = (Position) obj;
