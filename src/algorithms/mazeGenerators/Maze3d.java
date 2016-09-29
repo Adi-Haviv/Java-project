@@ -95,6 +95,10 @@ public class Maze3d implements Serializable{
 		}
 	}
 	
+	public int[][][] getMaze(){
+		return this.maze;
+	}
+	
 	/**
 	 * This method builds an array of bytes from the Maze3d object in a form
 	 * that corresponds with the C'tor for byte array.
@@ -244,7 +248,7 @@ public class Maze3d implements Serializable{
 			int[][] result = new int[maze.length][maze[0].length];
 			for (int i = 0; i < maze.length; i++) {
 				for (int j = 0; j < maze[0].length; j++) {
-					result[i][j] = maze[i][j][coord];
+					result[j][i] = maze[j][i][coord];
 				}
 			}
 			return result;
