@@ -262,7 +262,7 @@ public class Maze3d implements Serializable{
 	 */
 	public int[] goLeft(int[] cell){
 		try{
-			if(cell[0] > 1 && maze[cell[0] -1][cell[1]][cell[2]] == 0){
+			if(cell[0] > 0 && maze[cell[0] -1][cell[1]][cell[2]] == 0){
 				cell[0] -= 1;
 			}
 			else{
@@ -302,7 +302,7 @@ public class Maze3d implements Serializable{
 	 */
 	public int[] goBack(int[] cell){
 		try {
-			if(cell[1] > 1 && maze[cell[0]][cell[1] - 1][cell[2]] == 0){
+			if(cell[1] > 0 && maze[cell[0]][cell[1] - 1][cell[2]] == 0){
 				cell[1] -= 1;
 			}
 			else{
@@ -341,7 +341,7 @@ public class Maze3d implements Serializable{
 	 */
 	public int[] goDown(int[] cell){
 		try{
-			if(cell[2] > 1 && maze[cell[0]][cell[1]][cell[2] - 1] == 0){
+			if(cell[2] > 0 && maze[cell[0]][cell[1]][cell[2] - 1] == 0){
 				cell[2] -= 2;
 			}
 			else{
