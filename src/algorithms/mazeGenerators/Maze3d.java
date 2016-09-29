@@ -263,7 +263,7 @@ public class Maze3d implements Serializable{
 	public int[] goLeft(int[] cell){
 		try{
 			if(cell[0] > 1 && maze[cell[0] -1][cell[1]][cell[2]] == 0){
-				cell[0] -= 2;
+				cell[0] -= 1;
 			}
 			else{
 				cell[0] = -1;
@@ -282,8 +282,8 @@ public class Maze3d implements Serializable{
 	 */
 	public int[] goRight(int[] cell){
 		try{
-			if(cell[0] < this.maze.length - 2 && maze[cell[0] + 1][cell[1]][cell[2]] == 0){
-				cell[0] += 2;
+			if(cell[0] < this.maze.length - 1 && maze[cell[0] + 1][cell[1]][cell[2]] == 0){
+				cell[0] += 1;
 			}
 			else{
 				cell[0] = -1;
@@ -303,7 +303,7 @@ public class Maze3d implements Serializable{
 	public int[] goBack(int[] cell){
 		try {
 			if(cell[1] > 1 && maze[cell[0]][cell[1] - 1][cell[2]] == 0){
-				cell[1] -= 2;
+				cell[1] -= 1;
 			}
 			else{
 				cell[0] = -1;
@@ -322,8 +322,8 @@ public class Maze3d implements Serializable{
 	 */
 	public int[] goFwd(int[] cell){
 		try{
-			if(cell[1] < this.maze[0].length - 2 && maze[cell[0]][cell[1] + 1][cell[2]] == 0){
-				cell[1] += 2;
+			if(cell[1] < this.maze[0].length - 1 && maze[cell[0]][cell[1] + 1][cell[2]] == 0){
+				cell[1] += 1;
 			} else{
 				cell[0] = -1;
 			}
@@ -361,7 +361,7 @@ public class Maze3d implements Serializable{
 	 */
 	public int[] goUp(int[] cell){
 		try{
-			if(cell[2] < this.maze[0][0].length && maze[cell[0]][cell[1]][cell[2] + 1] == 0){
+			if(cell[2] < this.maze[0][0].length - 1 && maze[cell[0]][cell[1]][cell[2] + 1] == 0){
 				cell[2] += 2;
 			}
 			else{
